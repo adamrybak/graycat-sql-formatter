@@ -1,0 +1,52 @@
+{
+	"name": "graycat-sql-formatter",
+	"displayName": "GrayCat SQL Formatter",
+	"description": "A VSCode formatter extension for SQL scripts.",
+	"publisher": "AdamRybak",
+	"author": "Adam Rybak <adamrybak85@gmail.com>",
+	"repository": {
+		"url": "https://github.com/adamrybak/graycat-sql-formatter"
+	},
+	"version": "0.0.3",
+	"license": "MIT",
+	"preview": false,
+	"main": "./out/extension.js",
+	"engines": {
+		"vscode": "^1.47.0"
+	},
+	"categories": [
+		"Formatters"
+	],
+	"activationEvents": [
+		"onLanguage:sql"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "sql",
+				"extensions": [
+					".sql",
+					".dsql"
+				],
+				"aliases": [
+					"SQL",
+					"sql"
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"dependencies": {
+		"request": "^2.88.2"
+	},
+	"devDependencies": {
+		"@types/request": "^2.48.5",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.47.0",
+		"typescript": "^3.8.3"
+	}
+}
