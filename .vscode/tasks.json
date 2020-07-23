@@ -6,11 +6,7 @@
 			"group": "build",
 			"type": "npm",
 			"script": "webpack",
-			"problemMatcher": "$tsc-watch",
-			"isBackground": true,
-			"presentation": {
-				"reveal": "never"
-			}
+			"problemMatcher": "$tsc-watch"
 		},
 		{
 			"group": "build",

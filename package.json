@@ -7,10 +7,11 @@
 	"repository": {
 		"url": "https://github.com/adamrybak/graycat-sql-formatter"
 	},
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"license": "MIT",
 	"preview": false,
 	"main": "./dist/extension.js",
+	"icon": "static/logo.png",
 	"engines": {
 		"vscode": "^1.47.0"
 	},
