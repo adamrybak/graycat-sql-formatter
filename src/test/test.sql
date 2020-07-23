@@ -1,29 +1,7 @@
-select SD.INTERNAL_SHIPMENT_NUM,
-       SD.ITEM,
-       ILA.ALLOCATION_LOC,
-       L.USER_DEF4,
-       Q.NONMEZZ
-from   SHIPMENT_DETAIL SD
-       left join ITEM_LOCATION_ASSIGNMENT ILA
-              on SD.ITEM = ILA.ITEM
-                 and SD.WAREHOUSE = ILA.WAREHOUSE
-       left join LOCATION L
-              on ILA.ALLOCATION_LOC = L.LOCATION
-                 and ILA.WAREHOUSE = L.WAREHOUSE
-       left join (select SD.SHIPMENT_ID,
-                         Count(*) as [NonMezz]
-                  from   SHIPMENT_DETAIL SD
-                         join ITEM_LOCATION_ASSIGNMENT ILA
-                           on ILA.WAREHOUSE = SD.WAREHOUSE
-                              and ILA.ITEM = SD.ITEM
-                         join LOCATION L
-                           on L.WAREHOUSE = ILA.WAREHOUSE
-                              and L.LOCATION = ILA.ALLOCATION_LOC
-                  where  L.USER_DEF4 <> 'Mezz'
-                  group  by SD.SHIPMENT_ID) Q
-              on Q.SHIPMENT_ID = SD.SHIPMENT_ID
-where  SD.WAREHOUSE = 'eph'
-       and ( Q.NONMEZZ is null
-              or Q.NONMEZZ = 0 )
-       and ( SD.SHIPMENT_ID like 'SO1234567%'
-              or SD.SHIPMENT_ID like 'SO87654321%' ) 
+select SD.internal_shipment_num, SD.item, ILA.allocation_loc, L.user_def4, Q.nonmezz from shipment_detail SD left 
+join item_location_assignment ILA on SD.item = ILA.item and SD.warehouse = ILA.warehouse left join location L on ILA
+.allocation_loc = L.location and ILA.warehouse = L.warehouse left join (select SD.shipment_id, Count(*) as [NonMezz] 
+ from shipment_detail SD join item_location_assignment ILA on ILA.warehouse = SD.warehouse and ILA.item = SD.item 
+join location L on L.warehouse = ILA.warehouse and L.location = ILA.allocation_loc where L.user_def4 <> 'Mezz' group
+ by SD.shipment_id) Q on Q.shipment_id = SD.shipment_id where SD.warehouse = 'eph' and ( Q.nonmezz is null or Q.nonmezz
+ = 0 ) and ( SD.shipment_id like 'SO1234567%' or SD.shipment_id like 'SO87654321%' ) 
