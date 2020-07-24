@@ -7,12 +7,24 @@
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",
 			"args": [
+				"--disable-extensions",
 				"--extensionDevelopmentPath=${workspaceFolder}"
 			],
-			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
+			"preLaunchTask": "Build Debug",
+			"internalConsoleOptions": "openOnSessionStart"
+		},
+		{
+			"name": "Extension Tests",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--disable-extensions",
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"--extensionTestsPath=${workspaceFolder}/dist/test/index"
 			],
-			"preLaunchTask": "Build Debug"
+			"preLaunchTask": "Build Tests",
+			"internalConsoleOptions": "openOnSessionStart"
 		}
 	]
 }

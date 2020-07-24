@@ -9,6 +9,13 @@
 			"problemMatcher": "$tsc-watch"
 		},
 		{
+			"label": "Build Tests",
+			"group": "build",
+			"type": "npm",
+			"script": "test-compile",
+			"problemMatcher": "$tsc-watch"
+		},
+		{
 			"group": "build",
 			"type": "shell",
 			"label": "Build Package",
@@ -21,6 +28,6 @@
 			"label": "Build Publish",
 			"command": "vsce publish",
 			"problemMatcher": []
-		}
+		},
 	]
 }
