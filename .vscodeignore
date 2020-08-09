@@ -4,5 +4,6 @@ dist/test/**
 src/**
 .gitignore
 **/tsconfig.json
+**/webpack.config.js
 **/*.map
 **/*.ts

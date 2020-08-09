@@ -1,4 +1,4 @@
-## GrayCat SQL Formatter
+# GrayCat SQL Formatter
 ---
 An SQL formatting extension for Visual Studio Code.
 This extension was designed in lieu of a highly configurable formatter engine not being available on the Marketplace.
@@ -6,11 +6,11 @@ This extension was designed in lieu of a highly configurable formatter engine no
 Please report issues on [GitHub](https://github.com/adamrybak/graycat-sql-formatter/issues).
 
 ---
-### Configuration Options
-####`Case`
+## Configuration Options
+### `Case`
 - Possible values: `Uppercase`, `Lowercase`, `Unchanged`
 
-######Line Comments (default: `Unchanged`)
+###### Line Comments (default: `Unchanged`)
 `Unchanged`:
 ```sql
 AND suburb <> 'Old Town' -- ignore Old Town
@@ -20,7 +20,7 @@ AND suburb <> 'Old Town' -- ignore Old Town
 AND suburb <> 'Old Town' -- IGNORE OLD TOWN
 ```
 
-######Block Comments (default: `Unchanged`)
+###### Block Comments (default: `Unchanged`)
 `Unchanged`:
 ```sql
 SELECT people.address /* home address */
@@ -30,7 +30,7 @@ SELECT people.address /* home address */
 SELECT people.address /* HOME ADDRESS */
 ```
 
-######String Values (default: `Unchanged`)
+###### String Values (default: `Unchanged`)
 `Unchanged`:
 ```sql
 AND suburb <> 'Old Town' -- ignore Old Town
@@ -40,7 +40,7 @@ AND suburb <> 'Old Town' -- ignore Old Town
 AND suburb <> 'OLD TOWN' -- ignore Old Town
 ```
 
-######Literals (default: `Unchanged`)
+###### Literals (default: `Unchanged`)
 `Unchanged`:
 ```sql
 SELECT people.name AS [Name]
@@ -50,7 +50,7 @@ SELECT people.name AS [Name]
 SELECT people.name AS [NAME]
 ```
 
-######Keywords (default: `Uppercase`)
+###### Keywords (default: `Uppercase`)
 `Uppercase`:
 ```sql
 WHERE postalcode >= 3000
@@ -62,7 +62,7 @@ where postalcode >= 3000
       and suburb <> 'OLD TOWN' -- ignore Old Town
 ```
 
-######Functions (default: `Uppercase`)
+###### Functions (default: `Uppercase`)
 `Uppercase`:
 ```sql
 SELECT SUM(occupants)
@@ -74,7 +74,7 @@ SELECT sum(occupants)
 FROM people
 ```
 
-######Identifiers (default: `Lowercase`)
+###### Identifiers (default: `Lowercase`)
 `Lowercase`:
 ```sql
 SELECT people.name AS [Name],
