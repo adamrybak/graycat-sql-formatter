@@ -2,32 +2,32 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Build Debug",
-			"group": "build",
 			"type": "npm",
+			"group": "build",
+			"label": "Build Debug",
 			"script": "webpack",
 			"problemMatcher": "$tsc-watch"
 		},
 		{
-			"label": "Build Tests",
-			"group": "build",
 			"type": "npm",
-			"script": "test-compile",
+			"group": "build",
+			"label": "Watch Debug",
+			"script": "webpack-dev",
 			"problemMatcher": "$tsc-watch"
 		},
 		{
-			"group": "build",
 			"type": "shell",
+			"group": "build",
 			"label": "Build Package",
 			"command": "vsce package",
-			"problemMatcher": []
+			"problemMatcher": "$tsc-watch"
 		},
 		{
-			"group": "build",
 			"type": "shell",
+			"group": "build",
 			"label": "Build Publish",
 			"command": "vsce publish",
-			"problemMatcher": []
+			"problemMatcher": "$tsc-watch"
 		},
 	]
 }

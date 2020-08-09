@@ -1,7 +1,21 @@
-select SD.internal_shipment_num, SD.item, ILA.allocation_loc, L.user_def4, Q.nonmezz from shipment_detail SD left 
-join item_location_assignment ILA on SD.item = ILA.item and SD.warehouse = ILA.warehouse left join location L on ILA
-.allocation_loc = L.location and ILA.warehouse = L.warehouse left join (select SD.shipment_id, Count(*) as [NonMezz] 
- from shipment_detail SD join item_location_assignment ILA on ILA.warehouse = SD.warehouse and ILA.item = SD.item 
-join location L on L.warehouse = ILA.warehouse and L.location = ILA.allocation_loc where L.user_def4 <> 'Mezz' group
- by SD.shipment_id) Q on Q.shipment_id = SD.shipment_id where SD.warehouse = 'eph' and ( Q.nonmezz is null or Q.nonmezz
- = 0 ) and ( SD.shipment_id like 'SO1234567%' or SD.shipment_id like 'SO87654321%' ) 
+select TRANSACTION_HISTORY.ITEM,
+       ITEM.DESCRIPTION,
+       sum(TRANSACTION_HISTORY.QUANTITY, 12, 'this is a test')
+from TRANSACTION_HISTORY
+     join ITEM on ITEM.COMPANY = TRANSACTION_HISTORY.COMPANY
+                  and ITEM.ITEM = TRANSACTION_HISTORY.ITEM
+     join ITEM on ITEM.COMPANY = TRANSACTION_HISTORY.COMPANY
+                  and ITEM.ITEM = TRANSACTION_HISTORY.ITEM
+where TRANSACTION_HISTORY.TRANSACTION_TYPE = 120
+      and (
+            TRANSACTION_HISTORY.WORK_TYPE = 'Standard Tote Pick'
+            or TRANSACTION_HISTORY.WORK_TYPE = 'Standard Case Pick'
+      )
+      and cast(TRANSACTION_HISTORY.DATE_TIME_STAMP as date) = '2020-07-27'
+      and TRANSACTION_HISTORY.DIRECTION = 'To'
+             
+      -- grouping        
+group by TRANSACTION_HISTORY.ITEM,
+         ITEM.DESCRIPTION, -- desc   
+         ITEM.DATE_TIME_STAMP
+order by sum(TRANSACTION_HISTORY.QUANTITY /*quant*/) desc

@@ -8,22 +8,10 @@
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--disable-extensions",
-				"--extensionDevelopmentPath=${workspaceFolder}"
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"${workspaceFolder}/src/test/test.sql"
 			],
 			"preLaunchTask": "Build Debug",
-			"internalConsoleOptions": "openOnSessionStart"
-		},
-		{
-			"name": "Extension Tests",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--disable-extensions",
-				"--extensionDevelopmentPath=${workspaceFolder}",
-				"--extensionTestsPath=${workspaceFolder}/dist/test/index"
-			],
-			"preLaunchTask": "Build Tests",
 			"internalConsoleOptions": "openOnSessionStart"
 		}
 	]

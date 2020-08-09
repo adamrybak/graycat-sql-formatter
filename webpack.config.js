@@ -4,7 +4,6 @@
 
 const path = require('path');
 
-/**@type {import('webpack').Configuration}*/
 const config = {
     target: 'node',
     entry: './src/extension.ts',
@@ -15,6 +14,9 @@ const config = {
         devtoolModuleFilenameTemplate: '../[resource-path]'
     },
     devtool: 'source-map',
+    devServer: {
+        writeToDisk: true
+    },
     externals: {
         vscode: 'commonjs vscode'
     },

@@ -7,7 +7,7 @@
 	"repository": {
 		"url": "https://github.com/adamrybak/graycat-sql-formatter"
 	},
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"license": "MIT",
 	"preview": false,
 	"main": "./dist/extension.js",
@@ -20,6 +20,27 @@
 	],
 	"activationEvents": [
 		"onLanguage:sql"
+	],
+	"keywords": [
+		"database",
+		"db",
+		"db2",
+		"dba",
+		"formatter",
+		"ibm_db",
+		"mssql",
+		"mysql",
+		"oracle",
+		"oracledb",
+		"postgres",
+		"postgresql",
+		"redshift",
+		"rdbms",
+		"dbms",
+		"sql server",
+		"sql",
+		"sqlite",
+		"sqlplus"
 	],
 	"contributes": {
 		"languages": [
@@ -34,7 +55,83 @@
 					"sql"
 				]
 			}
-		]
+		],
+		"configuration": {
+			"type": "object",
+			"title": "GrayCat SQL Formatter Settings",
+			"properties": {
+				"graycat-sql-formatter.case.lineComments": {
+					"description": "Transform case of line comments.",
+					"type": "string",
+					"default": "Unchanged",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.blockComments": {
+					"description": "Transform case of block comments.",
+					"type": "string",
+					"default": "Unchanged",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.stringValues": {
+					"description": "Transform case of string values.",
+					"type": "string",
+					"default": "Unchanged",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.literals": {
+					"description": "Transform case of literals.",
+					"type": "string",
+					"default": "Unchanged",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.keywords": {
+					"description": "Transform case of keywords.",
+					"type": "string",
+					"default": "Uppercase",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.functions": {
+					"description": "Transform case of functions.",
+					"type": "string",
+					"default": "Uppercase",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				},
+				"graycat-sql-formatter.case.identifiers": {
+					"description": "Transform case of identifiers.",
+					"type": "string",
+					"default": "Lowercase",
+					"enum": [
+						"Lowercase",
+						"Uppercase",
+						"Unchanged"
+					]
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "webpack --mode production",
@@ -44,13 +141,9 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.0",
 		"@types/node": "^13.11.0",
 		"@types/request": "^2.48.5",
 		"@types/vscode": "^1.47.0",
-		"glob": "^7.1.6",
-		"mocha": "^8.0.1",
 		"request": "^2.88.2",
 		"ts-loader": "^8.0.1",
 		"typescript": "^3.8.3",
