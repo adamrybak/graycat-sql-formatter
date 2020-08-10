@@ -1,6 +1,9 @@
 ## Change Log
 
 ---
+### 2020-08-11
+- Added configuration option for maximum block width.
+
 ### 2020-08-09
 - Complete rewrite of formatting engine.
 - Implemented case changing options.

@@ -16,4 +16,8 @@ export interface Options {
         functions: CaseType,
         identifiers: CaseType,
     },
+
+    blocks: {
+        max_width: number,
+    },
 }

@@ -78,6 +78,7 @@ function converge_blocks(tokens: TokenCollection, options: Options) {
                         || children[j].type == TokenType.CloseParentheses
                     ))
                     || (children[j].type == TokenType.Comma)
+                    || (children[j].type == TokenType.EndOfStatement)
                 ) { }
 
                 else {
@@ -86,7 +87,7 @@ function converge_blocks(tokens: TokenCollection, options: Options) {
 
                 block_text += children[j].text;
 
-                if (block_text.length > 50) {
+                if (block_text.length > options.blocks.max_width) {
                     cancel = true;
                     break;
                 }
@@ -119,7 +120,7 @@ function insert_new_lines(tokens: TokenCollection, options: Options) {
 
         else if (
             prev_token !== undefined
-            && prev_token.type == TokenType.Comma
+            && (prev_token.type == TokenType.Comma || prev_token.type == TokenType.EndOfStatement)
             && current_token.type != TokenType.NewLine
             && current_token.type != TokenType.LineComment
             && current_token.type != TokenType.BlockComment
@@ -129,7 +130,7 @@ function insert_new_lines(tokens: TokenCollection, options: Options) {
 
         else if (
             prev_token2 !== undefined
-            && prev_token2.type == TokenType.Comma
+            && (prev_token2.type == TokenType.Comma || prev_token2.type == TokenType.EndOfStatement)
             && prev_token !== undefined
             && (prev_token.type == TokenType.LineComment
                 || prev_token.type == TokenType.BlockComment)
@@ -149,6 +150,7 @@ function insert_spaces(tokens: TokenCollection, options: Options) {
             && current_token.type != TokenType.NewLine
             && current_token.type != TokenType.Whitespace
             && current_token.type != TokenType.Comma
+            && current_token.type != TokenType.EndOfStatement
         ) {
             return new Token(TokenType.Whitespace, ' ', current_token.parent);
         }

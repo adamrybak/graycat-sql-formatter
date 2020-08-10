@@ -12,6 +12,7 @@ export enum TokenType {
     OpenParentheses,
     CloseParentheses,
     Comma,
+    EndOfStatement,
     Operator,
     TopLevelKeyword,
     NewLineKeyword,
@@ -114,6 +115,7 @@ const re_number_value = /^(-?[0-9]+(\.[0-9]*)?|-?\.[0-9]+|0x[0-9a-fA-F]+|0b[01]+
 const re_open_parentheses = /^\(/;
 const re_close_parentheses = /^\)/;
 const re_comma = /^,/;
+const re_end_of_statement = /^;/;
 const re_operator = /^[^\sa-zA-Z0-9\._@#\$,\(\)]+/;
 const re_top_level_keyword = new RegExp(`^(${build_word_regex(TopLevelKeywords)})([^a-zA-Z0-9\._@#\$]|$)`, 'si');
 const re_new_line_keyword = new RegExp(`^(${build_word_regex(NewLineKeywords)})([^a-zA-Z0-9\._@#\$]|$)`, 'si');
@@ -161,7 +163,9 @@ export class TokenCollection extends Array<Token> {
                     parents[parents.length - 1].children.push(token);
                 }
 
-                last_token = token;
+                if (token.type != TokenType.Whitespace && token.type != TokenType.NewLine) {
+                    last_token = token;
+                }
             }
         };
 
@@ -277,6 +281,12 @@ export class TokenCollection extends Array<Token> {
             token_match = content.match(re_comma);
             if (token_match) {
                 push_token(TokenType.Comma, token_match[0]);
+                continue;
+            }
+
+            token_match = content.match(re_end_of_statement);
+            if (token_match) {
+                push_token(TokenType.EndOfStatement, token_match[0]);
                 continue;
             }
 

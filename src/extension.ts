@@ -9,14 +9,18 @@ function get_options(range: vscode.Range): Options {
         initial_indent: range.start.character,
 
         case: {
-            line_comments: CaseType[config.get('case.lineComments')! as keyof typeof CaseType],
-            block_comments: CaseType[config.get('case.blockComments')! as keyof typeof CaseType],
-            string_values: CaseType[config.get('case.stringValues')! as keyof typeof CaseType],
-            literals: CaseType[config.get('case.literals')! as keyof typeof CaseType],
-            keywords: CaseType[config.get('case.keywords')! as keyof typeof CaseType],
-            functions: CaseType[config.get('case.functions')! as keyof typeof CaseType],
-            identifiers: CaseType[config.get('case.identifiers')! as keyof typeof CaseType],
-        }
+            line_comments: CaseType[config.get<string>('case.lineComments')! as keyof typeof CaseType],
+            block_comments: CaseType[config.get<string>('case.blockComments')! as keyof typeof CaseType],
+            string_values: CaseType[config.get<string>('case.stringValues')! as keyof typeof CaseType],
+            literals: CaseType[config.get<string>('case.literals')! as keyof typeof CaseType],
+            keywords: CaseType[config.get<string>('case.keywords')! as keyof typeof CaseType],
+            functions: CaseType[config.get<string>('case.functions')! as keyof typeof CaseType],
+            identifiers: CaseType[config.get<string>('case.identifiers')! as keyof typeof CaseType],
+        },
+
+        blocks: {
+            max_width: config.get<number>('blocks.maxWidth')!
+        },
     };
 }
 
